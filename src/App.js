@@ -7,7 +7,7 @@ function App() {
     let [weatherInfo, setInfo] = useState({
         country: undefined,
         city: undefined,
-        weather:undefined,
+        weather: undefined,
         realTemp: undefined,
         feelTemp: undefined,
         minTemp: undefined,
@@ -19,14 +19,13 @@ function App() {
     let getWeather = async (e) => {
         e.preventDefault();
         let city = e.target.elements.city.value;
-        if(city){
+        if (city) {
             const api = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
             const data = await api.json();
-            console.log(data)
             setInfo(weatherInfo = {
                 city: data.name,
                 country: data.sys.country,
-                weather:data.weather[0].description,
+                weather: data.weather[0].description,
                 realTemp: data.main.temp.toFixed(1),
                 feelTemp: data.main.feels_like.toFixed(1),
                 minTemp: data.main.temp_min.toFixed(1),
@@ -35,8 +34,7 @@ function App() {
                 humidity: data.main.humidity,
                 error: ""
             })
-            console.log(weatherInfo);
-        }else{
+        } else {
             setInfo(weatherInfo = {
                 country: undefined,
                 city: undefined,
